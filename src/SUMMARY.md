@@ -2,11 +2,11 @@
 
 
 * [Welcome](README.md)
-* [Chapter 1](chapter_1.md)
+* [datastructures](datastructures.md)
 
 
 ----
-* [datastructures](datastructures/README.md)
+* [datastructures]()
     * [queue](datastructures/queue.md)
     * [Evaluating Data Structures](datastructures/Evaluating.md)
     * [Hash Table - Hash Map](datastructures/hashtable.md)
