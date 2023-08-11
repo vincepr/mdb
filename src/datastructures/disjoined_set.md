@@ -31,7 +31,7 @@ Given a graph we want to find a minimum Spanning Tree in the graph.
 ![Kruskals minimum spanning tree](Untitled-2023-07-25-2354.excalidraw.svg)
 
 ## Implementation
-```cs
+```csharp
 public static class Example
 {
     public static void Run()

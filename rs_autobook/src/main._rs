@@ -1,0 +1,137 @@
+use std::{fs::{self, DirEntry}, io::{prelude::*,Error, Read, BufReader, BufWriter}, path::Path};
+use md5::{Digest, Md5};
+fn main() {
+    let path = std::env::args().nth(1).expect("No path given");
+    println!("Starting from folder: {}", path);
+    //let root = walk_dir(path).unwrap();
+    // dbg!(root);
+    make_summary(&path, true);
+}
+
+
+#[derive(Debug)]
+pub struct MarkdownFile {
+    pub name: String,
+    pub path: String,
+    pub title: String,
+}
+
+
+#[derive(Debug)]
+pub struct MarkdownFolder {
+    pub name: String,
+    pub path: String,
+    /// subfolders
+    pub folders: Vec<MarkdownFolder>,   
+    /// all files directly in this folder
+    pub files: Vec<MarkdownFile>        
+}
+
+const SUMMARY_FILE: &str = "SUMMARY.md";
+const README_MD: &str = "README.md";
+
+
+fn walk_dir(dir: String) -> Result<MarkdownFolder, Error>{
+    let entries = fs::read_dir(&dir)?;
+    let mut root = MarkdownFolder{
+        name: Path::new(&dir).file_name().unwrap().to_str().unwrap().to_string(),
+        path: dir,
+        folders: vec![],
+        files: vec![],
+    };
+
+    for entry in entries {
+        let entry = entry.unwrap();
+        if entry.file_type()?.is_dir(){
+            let files = walk_dir(entry.path().to_str().unwrap().into())?;
+            root.folders.push(files);
+            continue;
+        }
+        let name = entry.file_name().to_str().unwrap().to_string();
+        let arr: Vec<&str> = name.split(".").collect();
+        if arr.len() < 2 {
+            continue;
+        }
+        let name = arr[0];
+        let extension = arr[1];
+        if extension.to_lowercase() != "md" {
+            continue;
+        }
+        let title = get_title(&entry);
+        let md = MarkdownFile{
+            name: name.into(),
+            path: entry.path().to_str().unwrap().to_string(),
+            title,
+        };
+        root.files.push(md);
+    }
+    Ok(root)
+}
+
+fn get_title(entry: &DirEntry) -> String {
+    let md_file = std::fs::File::open(entry.path().to_str().unwrap()).unwrap();
+    let mut md_file_content = String::new();
+    let mut md_file_reader = std::io::BufReader::new(md_file);
+    md_file_reader.read_to_string(&mut md_file_content).unwrap();
+    let lines = md_file_content.split("\n");
+
+    let mut title: String = "".to_string();
+    let mut first_h1_line = "";
+    for line in lines {
+        if line.starts_with("# ") {
+            first_h1_line = line.trim_matches('#').trim();
+            break;
+        }
+    }
+
+    if first_h1_line.len() > 0 {
+        title = first_h1_line.to_string();
+    }
+
+    return title;
+}
+
+
+pub fn make_summary(source_dir: &String, use_first_line_as_link_text: bool) {
+    let mut source_dir = source_dir.clone();
+    if !source_dir.ends_with("/") {
+        source_dir.push_str("/")
+    }
+    let root = walk_dir(source_dir.clone().into()).unwrap();
+    let lines = gen_summary_lines(source_dir.clone().as_str(), &root, use_first_line_as_link_text);
+    let buff: String = lines.join("\n");
+
+    //let new_md5_string = md5(&buff);
+
+    let summary_file = std::fs::OpenOptions::new()
+        .write(true)
+        .read(true)
+        .create(true)
+        .open(source_dir.clone() + "/" + SUMMARY_FILE)
+        .unwrap();
+
+    let mut old_summary_file_content = String::new();
+    let mut summary_file_reader = BufReader::new(summary_file);
+    summary_file_reader.read_to_string(&mut old_summary_file_content).unwrap();
+
+    //let old_md5_string = md5(&old_summary_file_content);
+
+    // if new_md5_string == old_md5_string {
+    //     return;
+    // }
+
+    let summary_file = std::fs::OpenOptions::new()
+        .write(true)
+        .read(true)
+        .create(true)
+        .truncate(true)
+        .open(source_dir.clone() + "/" + SUMMARY_FILE)
+        .unwrap();
+    let mut summary_file_writer = BufWriter::new(summary_file);
+    summary_file_writer.write_all(buff.as_bytes()).unwrap();
+}
+
+
+fn gen_summary_lines(root_dir: &str, group: &MarkdownFolder, use_first_line_as_link_text: bool) -> Vec<String> {
+    vec!["summary ... ".into()]
+}
