@@ -1,11 +1,20 @@
+use std::env::args;
+
 use crate::summary::{walk_dir, write_summary};
 
 mod summary;
 
 fn main() {
-    const use_header: bool = false;
+    let mut use_header: bool = true;
 
-    let mut path = std::env::args().nth(1).expect("No path provided");
+    let mut path = args().nth(1).expect("No path provided");
+    if let Some(option) = args().nth(2){
+        if option == "--filenames"{
+            dbg!("read header");
+            use_header = false;
+        }
+    }
+
     if !path.ends_with("/") {
         path.push_str("/");
     }

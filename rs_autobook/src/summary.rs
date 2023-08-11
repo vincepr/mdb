@@ -1,6 +1,6 @@
 use std::{
     fs::{read_dir, read_to_string, DirEntry, OpenOptions},
-    io::Write,
+    io::Write, iter::Peekable, vec::IntoIter,
 };
 
 #[derive(Debug, Clone)]
@@ -19,6 +19,7 @@ pub enum Entry {
 
 const SUMMARY_MD: &str = "SUMMARY.md";
 const README_MD: &str = "README.md";
+
 pub fn write_summary(entries: Vec<Entry>, root_path: &str) {
     let mut lines: Vec<String> = vec!["# Summary\n\n[Welcome](README.md)\n\n----".into()];
     for entry in entries {
@@ -60,10 +61,9 @@ pub fn walk_dir(dir: String, depth: usize, use_header: bool) -> Vec<Entry> {
     let mut result = vec![];
     let mut entries: Vec<DirEntry> = read_dir(&dir).unwrap().map(|r| r.unwrap()).collect();
     entries.sort_by_key(|e| e.path().to_str().unwrap().to_lowercase());
-    let mut entries: std::iter::Peekable<std::vec::IntoIter<DirEntry>> =
+    let mut entries: Peekable<IntoIter<DirEntry>> =
         entries.into_iter().peekable();
 
-    // gotta loop like this because we peek
     while let Some(entry) = entries.next() {
         let entry = entry;
 

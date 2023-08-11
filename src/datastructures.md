@@ -1,4 +1,2 @@
-# datastructures are cool
-- whatever
-- come 
-- here
+# Binary Search Tree
+
