@@ -1,5 +1,4 @@
-use std::{fs::{self, DirEntry}, io::{prelude::*,Error, Read, BufReader, BufWriter}, path::Path};
-use md5::{Digest, Md5};
+use std::{fs::{self, DirEntry}, io::{prelude::*,Error, Read, BufReader, BufWriter}, path::Path, fmt};
 fn main() {
     let path = std::env::args().nth(1).expect("No path given");
     println!("Starting from folder: {}", path);
@@ -9,7 +8,7 @@ fn main() {
 }
 
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct MarkdownFile {
     pub name: String,
     pub path: String,
@@ -17,7 +16,7 @@ pub struct MarkdownFile {
 }
 
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct MarkdownFolder {
     pub name: String,
     pub path: String,
@@ -98,7 +97,7 @@ pub fn make_summary(source_dir: &String, use_first_line_as_link_text: bool) {
         source_dir.push_str("/")
     }
     let root = walk_dir(source_dir.clone().into()).unwrap();
-    let lines = gen_summary_lines(source_dir.clone().as_str(), &root, use_first_line_as_link_text);
+    let lines = gen_summary_lines(source_dir.clone().as_str(), &root);
     let buff: String = lines.join("\n");
 
     //let new_md5_string = md5(&buff);
@@ -132,6 +131,14 @@ pub fn make_summary(source_dir: &String, use_first_line_as_link_text: bool) {
 }
 
 
-fn gen_summary_lines(root_dir: &str, group: &MarkdownFolder, use_first_line_as_link_text: bool) -> Vec<String> {
-    vec!["summary ... ".into()]
+fn gen_summary_lines(root_dir: &str, root: &MarkdownFolder) -> Vec<String> {
+    dbg!(root_dir);
+    let mut lines : Vec<String> = vec![];
+    for file in root.files.clone() {
+        let path_without_root = file.path.trim_start_matches(root_dir);
+        lines.push(format!("* [{}]({})", file.title, path_without_root));
+    }
+
+
+    return lines;
 }
