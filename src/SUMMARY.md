@@ -6,7 +6,7 @@
 
 
 ----
-* [datastructures]()
+* datastructures
     * [queue](datastructures/queue.md)
     * [Evaluating Data Structures](datastructures/Evaluating.md)
     * [Hash Table - Hash Map](datastructures/hashtable.md)
