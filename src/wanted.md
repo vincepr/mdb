@@ -1,18 +1,30 @@
 # Index
 
 
-* [Welcome](README.md)
-* [datastructures](datastructures.md)
+* [Index](SUMMARY.md)       // hardcoded --
 
 
 ----
+* [a_binary_search_tree.md](a_binary_search_tree.md)
 * [datastructures]()
-    * [queue](datastructures/queue.md)
-    * [Evaluating Data Structures](datastructures/Evaluating.md)
-    * [Hash Table - Hash Map](datastructures/hashtable.md)
-    * [Linked List (Singly Linked List)](datastructures/linked_list.md)
-    * [Basic structures](datastructures/dynamic_array.md)
-    * [Union Find - Disjoint Set](datastructures/disjoined_set.md)
-    * [Priority Queue - (often implemented with a Heap)](datastructures/priority_queue.md)
-    * [Basic Stack implementation in C#](datastructures/stack.md)
-    * [binary_search_tree](datastructures/binary_search_tree.md)
+	* [disjoined_set.md](datastructures/disjoined_set.md)
+	* [dynamic_array.md](datastructures/dynamic_array.md)
+	* [Evaluating.md](datastructures/Evaluating.md)
+	* [hashtable.md](datastructures/hashtable.md)
+	* [linked_list.md](datastructures/linked_list.md)
+	* [nested]()
+		* [inside]()
+			* [README.md](datastructures/nested/inside/README.md)
+			* [testing.md](datastructures/nested/inside/testing.md)
+		* [README.md](datastructures/nested/README.md)
+	* [nestedonce]()
+		* [another.md](datastructures/nestedonce/another.md)
+		* [README.md](datastructures/nestedonce/README.md)
+	* [priority_queue.md](datastructures/priority_queue.md)
+	* [queue.md](datastructures/queue.md)
+	* [README.md](datastructures/README.md)
+	* [stack.md](datastructures/stack.md)
+* [datastructures.md](datastructures.md)
+* [README.md](README.md)
+* [SUMMARY.md](SUMMARY.md)
+* [wanted.md](wanted.md)
