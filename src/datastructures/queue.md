@@ -1,4 +1,4 @@
-﻿# Queue in C#
+﻿# Queue in Csharp
 
 ## Implementation
 ```cs

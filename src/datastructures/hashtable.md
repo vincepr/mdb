@@ -228,7 +228,7 @@ void tableAddAll(Table* from, Table* to) {
 }
 ```
 
-## Separate Chaining Hash Table in C#
+## Separate Chaining Hash Table in Csharp
 
 ```cs
 

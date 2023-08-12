@@ -1,4 +1,4 @@
-# Basic Stack implementation in C#
+# Basic Stack implementation in Csharp
 
 
 ## Implementation

@@ -8,26 +8,28 @@ Automatically generates a SUMMARY.md for the rust `mdbook` crate.
 [Welcome](README.md)
 
 ----
-* [a_1](a_1.md)
-* [a_binary_search_tree](a_binary_search_tree.md)
-* [datastructures](datastructures.md)
-	* [disjoined_set](datastructures/disjoined_set.md)
-	* [dynamic_array](datastructures/dynamic_array.md)
-	* [Evaluating](datastructures/Evaluating.md)
-	* [hashtable](datastructures/hashtable.md)
-	* [linked_list](datastructures/linked_list.md)
+# Summary
+
+[Welcome](README.md)
+
+----
+* [Binary Search Tree](a_binary_search_tree.md)
+* [Datastructures](datastructures.md)
+	* [Union Find - Disjoint Set](datastructures/disjoined_set.md)
+	* [Basic structures](datastructures/dynamic_array.md)
+	* [Evaluating Data Structures](datastructures/Evaluating.md)
+	* [Hash Table - Hash Map](datastructures/hashtable.md)
+	* [Linked List (Singly Linked List)](datastructures/linked_list.md)
 	* [nested]()
 		* [inside]()
 			* [testing](datastructures/nested/inside/testing.md)
-	* [nestedonce](datastructures/nestedonce.md)
-		* [another](datastructures/nestedonce/another.md)
-	* [nestedonce](datastructures/nestedonce.md)
-	* [priority_queue](datastructures/priority_queue.md)
-	* [queue](datastructures/queue.md)
-	* [stack](datastructures/stack.md)
-* [datastructures](datastructures.md)
+	* [nested once](datastructures/nestedonce.md)
+		* [antoher nested file](datastructures/nestedonce/another.md)
+	* [Priority Queue - (often implemented with a Heap)](datastructures/priority_queue.md)
+	* [Queue in C#](datastructures/queue.md)
+	* [Basic Stack implementation in C#](datastructures/stack.md)
 * [nestedonce](nestedonce.md)
-* [wanted](wanted.md)
+* [Index](wanted.md)
 ```
 - by default the first h1 title (`# someTitle`) gets used as names. 
     - But by passing along the `--usefiles` flag the raw file- and foldernames will be used.

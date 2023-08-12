@@ -94,6 +94,7 @@ pub fn walk_dir(dir: String, depth: usize, use_header: bool) -> Vec<Entry> {
                         path: Some(next_entry.path().into_os_string().into_string().unwrap()),
                     });
                     result.append(&mut inner_entries);
+                    entries.next();     // skipp the file (since it will be shown in folder's spot)
                     continue;
                 }
             }
