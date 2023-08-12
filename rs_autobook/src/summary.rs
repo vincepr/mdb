@@ -128,6 +128,7 @@ pub fn walk_dir(dir: String, depth: usize, use_header: bool) -> Vec<Entry> {
     return result;
 }
 
+
 /// Reads the first H1 header in a markdown file to get the title of the chapter
 fn get_title(entry: &DirEntry, use_header: bool) -> String {
     fn get_dir_as_title(entry: &DirEntry) -> String {
@@ -143,7 +144,10 @@ fn get_title(entry: &DirEntry, use_header: bool) -> String {
     }
     let contents = read_to_string(entry.path()).unwrap();
     let mut title = None;
-    for l in contents.lines() {
+    for mut l in contents.lines() {
+        if l.starts_with("\u{feff}"){
+           l = l.trim_start_matches("\u{feff}"); 
+        }
         if l.starts_with("# ") {
             if let Some(h1) = l.get(2..) {
                 title = Some(String::from(h1))

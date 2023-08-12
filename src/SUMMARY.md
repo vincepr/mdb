@@ -3,7 +3,8 @@
 [Welcome](README.md)
 
 ----
-* [a_binary_search_tree](a_binary_search_tree.md)
+* [Whatever goes here](a_1.md)
+* [Binary Search Tree](a_binary_search_tree.md)
 * [Binary Search Tree](datastructures.md)
 	* [Union Find - Disjoint Set](datastructures/disjoined_set.md)
 	* [Basic structures](datastructures/dynamic_array.md)
@@ -17,7 +18,7 @@
 		* [antoher nested file](datastructures/nestedonce/another.md)
 	* [nested once](datastructures/nestedonce.md)
 	* [Priority Queue - (often implemented with a Heap)](datastructures/priority_queue.md)
-	* [queue](datastructures/queue.md)
+	* [Queue in C#](datastructures/queue.md)
 	* [Basic Stack implementation in C#](datastructures/stack.md)
 * [Binary Search Tree](datastructures.md)
 * [nestedonce](nestedonce.md)
