@@ -1,3 +1,8 @@
+# rs_autobook
+Automatically generates a SUMMARY.md for the rust `mdbook` crate.
+
+- The underlying file structure gets parsed into a Summary Markdown file the mdbook-tool will use for chapters.
+```md
 # Summary
 
 [Welcome](README.md)
@@ -23,3 +28,8 @@
 * [datastructures](datastructures.md)
 * [nestedonce](nestedonce.md)
 * [wanted](wanted.md)
+```
+- by default the first h1 title (`# someTitle`) gets used as names. 
+    - But by passing along the `--usefiles` flag the raw file- and foldernames will be used.
+- folders will appear as empty points in the list (`nested` and `inside`)
+    - but if there is a markdownfile with the same name as the folder, that file will be used.
